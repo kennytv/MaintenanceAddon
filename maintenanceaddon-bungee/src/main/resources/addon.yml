@@ -1,0 +1,7 @@
+# You can edit the placeholder messages here.
+# Placeholders are %maintenance_status% and %maintenance_server_<server>%, where <server> is the name of the proxied server to check.
+
+maintenance-on: "&aenabled"
+maintenance-off: "&cdisabled"
+single-maintenance-on: "&aenabled"
+single-maintenance-off: "&cdisabled"

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>eu.kennytv</groupId>
+    <artifactId>maintenanceaddon</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+
+    <name>MaintenanceAddon</name>
+    <url>https://github.com/KennyTV/MaintenanceAddon</url>
+    <inceptionYear>2019</inceptionYear>
+
+    <developers>
+        <developer>
+            <id>KennyTV</id>
+            <url>https://kennytv.eu/</url>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>maintenanceaddon-bungee</module>
+        <module>maintenanceaddon-spigot</module>
+        <module>maintenanceaddon-build</module>
+    </modules>
+
+    <properties>
+        <plugin.java>1.8</plugin.java>
+        <maven.compiler.target>${plugin.java}</maven.compiler.target>
+        <maven.compiler.source>${plugin.java}</maven.compiler.source>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>bungeecord-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>spigotmc-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <finalName>${project.name}-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>

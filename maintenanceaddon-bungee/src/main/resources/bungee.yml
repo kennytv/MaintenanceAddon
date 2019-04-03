@@ -1,0 +1,6 @@
+name: MaintenanceAddon
+version: ${project.version}
+main: eu.kennytv.maintenance.addon.bungee.MaintenanceBungeeAddon
+author: KennyTV
+website: https://www.spigotmc.org/resources/maintenance.40699/
+depend: [MaintenanceBungee]

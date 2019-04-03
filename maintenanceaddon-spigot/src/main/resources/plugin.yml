@@ -1,0 +1,7 @@
+name: MaintenanceAddon
+version: ${project.version}
+main: eu.kennytv.maintenance.addon.spigot.MaintenanceSpigotAddon
+author: KennyTV
+website: https://www.spigotmc.org/resources/maintenance.40699/
+api-version: 1.13
+depend: [PlaceholderAPI]
