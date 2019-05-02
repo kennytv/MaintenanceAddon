@@ -15,7 +15,7 @@ public final class MaintenancePlaceholder extends PlaceholderHook {
         if (identifier.equals("status")) {
             return plugin.getMessages().get(plugin.isMaintenance() ? "maintenance-on" : "maintenance-off");
         } else if (identifier.startsWith("server_")) {
-            return plugin.getMessages().get(plugin.getMaintenanceServers().contains(identifier.substring(7)) ? "single-maintenance-on" : "single-maintenance-off");
+            return plugin.getMessages().get(plugin.getMaintenanceServers().contains(identifier.substring(7).toLowerCase()) ? "single-maintenance-on" : "single-maintenance-off");
         }
         return null;
     }
