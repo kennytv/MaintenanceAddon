@@ -14,13 +14,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>eu.kennytv</groupId>
+            <groupId>eu.kennytv.maintenance</groupId>
             <artifactId>maintenanceaddon-bungee</artifactId>
             <version>${project.parent.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>eu.kennytv</groupId>
+            <groupId>eu.kennytv.maintenance</groupId>
             <artifactId>maintenanceaddon-spigot</artifactId>
             <version>${project.parent.version}</version>
             <scope>compile</scope>
