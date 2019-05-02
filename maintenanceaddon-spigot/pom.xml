@@ -21,7 +21,7 @@
         <dependency>
             <groupId>eu.kennytv.maintenance</groupId>
             <artifactId>maintenance-api</artifactId>
-            <version>3.0.1-SNAPSHOT</version>
+            <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
