@@ -1,8 +1,10 @@
 package eu.kennytv.maintenance.addon.spigot;
 
+import eu.kennytv.maintenance.addon.spigot.command.MaintenanceAddonCommand;
 import eu.kennytv.maintenance.addon.spigot.listener.MessagingListener;
 import eu.kennytv.maintenance.addon.spigot.listener.PlayerJoinListener;
 import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -17,10 +19,16 @@ public final class MaintenanceSpigotAddon extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getServer().getMessenger().registerIncomingPluginChannel(this, "Return", new MessagingListener(this));
-        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PlaceholderAPI.registerPlaceholderHook("maintenance", new MaintenancePlaceholder(this));
+
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "maintenance:request");
+        getServer().getMessenger().registerIncomingPluginChannel(this, "maintenance:return", new MessagingListener(this));
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+
+        // Debug command
+        final PluginCommand command = getCommand("maintenanceaddon");
+        if (command != null)
+            command.setExecutor(new MaintenanceAddonCommand());
     }
 
     public boolean isMaintenance() {

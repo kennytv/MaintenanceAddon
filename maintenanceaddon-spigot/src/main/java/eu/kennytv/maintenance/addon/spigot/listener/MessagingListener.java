@@ -19,17 +19,17 @@ public final class MessagingListener implements PluginMessageListener {
     public void onPluginMessageReceived(final String s, final Player player, final byte[] bytes) {
         final DataInputStream in = new DataInputStream(new ByteArrayInputStream(bytes));
         try {
-            final String channel = in.readUTF();
-            if (channel.equals("maintenance:changed")) {
+            final String type = in.readUTF();
+            if (type.equals("changed")) {
                 plugin.setMaintenance(Boolean.parseBoolean(in.readUTF()));
-            } else if (channel.equals("maintenance:server")) {
+            } else if (type.equals("server")) {
                 final String server = in.readUTF();
                 if (Boolean.parseBoolean(in.readUTF())) {
                     plugin.getMaintenanceServers().add(server);
                 } else {
                     plugin.getMaintenanceServers().remove(server);
                 }
-            } else if (channel.equals("maintenance:messages")) {
+            } else if (type.equals("messages")) {
                 plugin.getMessages().put(in.readUTF(), in.readUTF());
             }
         } catch (final IOException e) {

@@ -54,7 +54,7 @@ public final class MaintenanceBungeeAddon extends Plugin {
         final ByteArrayOutputStream stream = new ByteArrayOutputStream();
         final DataOutputStream out = new DataOutputStream(stream);
         try {
-            out.writeUTF("maintenance:" + subchannel);
+            out.writeUTF(subchannel);
             for (final String message : messages) {
                 out.writeUTF(message);
             }
@@ -63,6 +63,6 @@ public final class MaintenanceBungeeAddon extends Plugin {
         }
 
         final byte[] data = stream.toByteArray();
-        getProxy().getServers().values().forEach(server -> server.sendData("Return", data));
+        getProxy().getServers().values().forEach(server -> server.sendData("maintenance:return", data));
     }
 }

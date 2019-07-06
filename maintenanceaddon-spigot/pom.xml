@@ -6,7 +6,7 @@
     <parent>
         <groupId>eu.kennytv.maintenance</groupId>
         <artifactId>maintenanceaddon-parent</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </parent>
 
     <artifactId>maintenanceaddon-spigot</artifactId>
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>eu.kennytv.maintenance</groupId>
             <artifactId>maintenance-api</artifactId>
-            <version>3.0.1</version>
+            <version>3.0.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
