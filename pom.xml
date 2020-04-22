@@ -7,7 +7,7 @@
     <groupId>eu.kennytv.maintenance</groupId>
     <artifactId>maintenanceaddon-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.3</version>
 
     <name>MaintenanceAddon</name>
     <url>https://github.com/KennyTV/MaintenanceAddon</url>
