@@ -7,7 +7,7 @@
     <groupId>eu.kennytv.maintenance</groupId>
     <artifactId>maintenanceaddon-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.2</version>
+    <version>1.0.4-SNAPSHOT</version>
 
     <name>MaintenanceAddon</name>
     <url>https://github.com/KennyTV/MaintenanceAddon</url>
@@ -31,6 +31,8 @@
         <maven.compiler.target>${plugin.java}</maven.compiler.target>
         <maven.compiler.source>${plugin.java}</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maintenance.version>3.0.5-SNAPSHOT</maintenance.version>
     </properties>
 
     <repositories>
@@ -54,7 +56,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>3.2.2</version>
                 <executions>
                     <execution>
                         <phase>package</phase>

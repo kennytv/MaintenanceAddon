@@ -34,7 +34,7 @@ public final class MaintenanceBungeeAddon extends Plugin {
         config = new Config(new File(maintenanceApi.getDataFolder(), "addon.yml"));
         try {
             config.load();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
 
