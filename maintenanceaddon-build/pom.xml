@@ -6,13 +6,19 @@
     <parent>
         <groupId>eu.kennytv.maintenance</groupId>
         <artifactId>maintenanceaddon-parent</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>maintenanceaddon-build</artifactId>
     <name>MaintenanceAddon</name>
 
     <dependencies>
+        <dependency>
+            <groupId>eu.kennytv.maintenance</groupId>
+            <artifactId>maintenanceaddon-common</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>eu.kennytv.maintenance</groupId>
             <artifactId>maintenanceaddon-bungee</artifactId>

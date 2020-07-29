@@ -14,7 +14,9 @@ public final class MessagingListener implements Listener {
 
     @EventHandler
     public void pluginMessage(final PluginMessageEvent event) {
-        if (!event.getTag().equals("maintenance:request")) return;
-        plugin.sendInfo();
+        if (event.getTag().equals("maintenance:request")) {
+            plugin.sendMessages();
+            plugin.sendAllServers();
+        }
     }
 }

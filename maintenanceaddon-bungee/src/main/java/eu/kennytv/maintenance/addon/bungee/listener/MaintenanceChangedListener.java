@@ -13,6 +13,6 @@ public final class MaintenanceChangedListener extends EventListener<MaintenanceC
 
     @Override
     public void onEvent(final MaintenanceChangedEvent event) {
-        plugin.sendPluginMessage("changed", String.valueOf(event.isMaintenance()));
+        plugin.sendPluginMessage(event.isMaintenance());
     }
 }

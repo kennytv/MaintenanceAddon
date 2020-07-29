@@ -7,7 +7,7 @@
     <groupId>eu.kennytv.maintenance</groupId>
     <artifactId>maintenanceaddon-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
 
     <name>MaintenanceAddon</name>
     <url>https://github.com/KennyTV/MaintenanceAddon</url>
@@ -16,11 +16,12 @@
     <developers>
         <developer>
             <id>KennyTV</id>
-            <url>https://kennytv.eu/</url>
+            <url>https://github.com/KennyTV</url>
         </developer>
     </developers>
 
     <modules>
+        <module>maintenanceaddon-common</module>
         <module>maintenanceaddon-bungee</module>
         <module>maintenanceaddon-spigot</module>
         <module>maintenanceaddon-build</module>
@@ -32,21 +33,17 @@
         <maven.compiler.source>${plugin.java}</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <maintenance.version>3.0.5-SNAPSHOT</maintenance.version>
+        <maintenance.version>3.0.6-SNAPSHOT</maintenance.version>
     </properties>
 
     <repositories>
-        <repository>
-            <id>bungeecord-repo</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </repository>
         <repository>
             <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
             <id>placeholderapi</id>
-            <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
     </repositories>
 

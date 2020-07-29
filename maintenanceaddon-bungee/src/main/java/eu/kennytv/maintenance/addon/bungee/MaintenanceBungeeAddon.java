@@ -1,18 +1,30 @@
 package eu.kennytv.maintenance.addon.bungee;
 
+import eu.kennytv.maintenance.addon.DataOutputStreamConsumer;
+import eu.kennytv.maintenance.addon.MaintenanceChannel;
 import eu.kennytv.maintenance.addon.bungee.listener.MaintenanceChangedListener;
+import eu.kennytv.maintenance.addon.bungee.listener.MaintenanceReloadedListener;
 import eu.kennytv.maintenance.addon.bungee.listener.MessagingListener;
 import eu.kennytv.maintenance.addon.bungee.listener.ServerMaintenanceChangedListener;
 import eu.kennytv.maintenance.api.bungee.MaintenanceBungeeAPI;
 import eu.kennytv.maintenance.api.event.MaintenanceChangedEvent;
+import eu.kennytv.maintenance.api.event.MaintenanceReloadedEvent;
+import eu.kennytv.maintenance.api.event.manager.IEventManager;
 import eu.kennytv.maintenance.api.event.proxy.ServerMaintenanceChangedEvent;
 import eu.kennytv.maintenance.core.config.Config;
 import eu.kennytv.maintenance.core.proxy.MaintenanceProxyPlugin;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.plugin.Plugin;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.Map;
+import java.util.Set;
 
 public final class MaintenanceBungeeAddon extends Plugin {
     private MaintenanceProxyPlugin maintenanceApi;
@@ -39,30 +51,64 @@ public final class MaintenanceBungeeAddon extends Plugin {
         }
 
         getProxy().getPluginManager().registerListener(this, new MessagingListener(this));
-        maintenanceApi.getEventManager().registerListener(new MaintenanceChangedListener(this), MaintenanceChangedEvent.class);
-        maintenanceApi.getEventManager().registerListener(new ServerMaintenanceChangedListener(this), ServerMaintenanceChangedEvent.class);
-        sendInfo();
+        final IEventManager eventManager = maintenanceApi.getEventManager();
+        eventManager.registerListener(new MaintenanceChangedListener(this), MaintenanceChangedEvent.class);
+        eventManager.registerListener(new ServerMaintenanceChangedListener(this), ServerMaintenanceChangedEvent.class);
+        eventManager.registerListener(new MaintenanceReloadedListener(this), MaintenanceReloadedEvent.class);
+
+        sendMessages();
+        sendAllServers();
     }
 
-    public void sendInfo() {
-        config.getValues().forEach((key, value) -> sendPluginMessage("messages", key, ChatColor.translateAlternateColorCodes('&', String.valueOf(value))));
-        maintenanceApi.getMaintenanceServers().forEach(server -> sendPluginMessage("server", server.toLowerCase(), "true"));
-        sendPluginMessage("changed", String.valueOf(maintenanceApi.isMaintenance()));
+    public void sendMessages() {
+        sendPluginMessage(MaintenanceChannel.MESSAGES, out -> {
+            out.writeInt(config.getValues().size());
+            for (final Map.Entry<String, Object> entry : config.getValues().entrySet()) {
+                out.writeUTF(entry.getKey());
+                out.writeUTF(ChatColor.translateAlternateColorCodes('&', String.valueOf(entry.getValue())));
+            }
+        });
     }
 
-    public void sendPluginMessage(final String subchannel, final String... messages) {
+    public void sendAllServers() {
+        sendPluginMessage(MaintenanceChannel.SERVERS, out -> {
+            // Global status
+            out.writeBoolean(maintenanceApi.isMaintenance());
+
+            // Single servers with maintenance enabled
+            final Set<String> servers = maintenanceApi.getMaintenanceServers();
+            out.writeInt(servers.size());
+            for (final String server : servers) {
+                out.writeUTF(server.toLowerCase());
+            }
+        });
+    }
+
+    public void sendPluginMessage(final boolean maintenance) {
+        sendPluginMessage(MaintenanceChannel.GLOBAL_STATUS, out -> out.writeBoolean(maintenance));
+    }
+
+    public void sendPluginMessage(final String server, final boolean maintenance) {
+        sendPluginMessage(MaintenanceChannel.SERVER, out -> {
+            out.writeUTF(server);
+            out.writeBoolean(maintenance);
+        });
+    }
+
+    private void sendPluginMessage(final MaintenanceChannel channel, final DataOutputStreamConsumer consumer) {
         final ByteArrayOutputStream stream = new ByteArrayOutputStream();
         final DataOutputStream out = new DataOutputStream(stream);
         try {
-            out.writeUTF(subchannel);
-            for (final String message : messages) {
-                out.writeUTF(message);
-            }
+            out.writeByte(channel.ordinal());
+            consumer.accept(out);
         } catch (final IOException e) {
             e.printStackTrace();
+            return;
         }
 
         final byte[] data = stream.toByteArray();
-        getProxy().getServers().values().forEach(server -> server.sendData("maintenance:return", data));
+        for (final ServerInfo server : getProxy().getServers().values()) {
+            server.sendData("maintenance:return", data);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package eu.kennytv.maintenance.addon.spigot.listener;
 
+import eu.kennytv.maintenance.addon.MaintenanceChannel;
 import eu.kennytv.maintenance.addon.spigot.MaintenanceSpigotAddon;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
@@ -19,18 +20,41 @@ public final class MessagingListener implements PluginMessageListener {
     public void onPluginMessageReceived(final String s, final Player player, final byte[] bytes) {
         final DataInputStream in = new DataInputStream(new ByteArrayInputStream(bytes));
         try {
-            final String type = in.readUTF();
-            if (type.equals("changed")) {
-                plugin.setMaintenance(Boolean.parseBoolean(in.readUTF()));
-            } else if (type.equals("server")) {
-                final String server = in.readUTF();
-                if (Boolean.parseBoolean(in.readUTF())) {
-                    plugin.getMaintenanceServers().add(server);
-                } else {
-                    plugin.getMaintenanceServers().remove(server);
+            final byte ordinal = in.readByte();
+            if (ordinal < 0 || ordinal >= MaintenanceChannel.getValues().length) return;
+
+            final MaintenanceChannel channel = MaintenanceChannel.getValues()[ordinal];
+            switch (channel) {
+                case MESSAGES: {
+                    final int length = in.readInt();
+                    for (int i = 0; i < length; i++) {
+                        plugin.getMessages().put(in.readUTF(), in.readUTF());
+                    }
+                    break;
                 }
-            } else if (type.equals("messages")) {
-                plugin.getMessages().put(in.readUTF(), in.readUTF());
+                case SERVER: {
+                    final String server = in.readUTF();
+                    if (in.readBoolean()) {
+                        plugin.getMaintenanceServers().add(server);
+                    } else {
+                        plugin.getMaintenanceServers().remove(server);
+                    }
+                    break;
+                }
+                case SERVERS: {
+                    plugin.setMaintenance(in.readBoolean());
+
+                    final int length = in.readInt();
+                    plugin.getMaintenanceServers().clear();
+                    for (int i = 0; i < length; i++) {
+                        plugin.getMaintenanceServers().add(in.readUTF());
+                    }
+                    break;
+                }
+                case GLOBAL_STATUS: {
+                    plugin.setMaintenance(in.readBoolean());
+                    break;
+                }
             }
         } catch (final IOException e) {
             e.printStackTrace();

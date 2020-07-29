@@ -13,6 +13,6 @@ public final class ServerMaintenanceChangedListener extends EventListener<Server
 
     @Override
     public void onEvent(final ServerMaintenanceChangedEvent event) {
-        plugin.sendPluginMessage("server", event.getServer().getName().toLowerCase(), String.valueOf(event.isMaintenance()));
+        plugin.sendPluginMessage(event.getServer().getName().toLowerCase(), event.isMaintenance());
     }
 }
