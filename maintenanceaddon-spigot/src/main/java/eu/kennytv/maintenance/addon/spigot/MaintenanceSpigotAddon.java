@@ -24,7 +24,6 @@ public final class MaintenanceSpigotAddon extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        //noinspection deprecation - "Sx just wanted to confuse people"
         new MaintenancePlaceholder(this).register();
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, "maintenance:request");
