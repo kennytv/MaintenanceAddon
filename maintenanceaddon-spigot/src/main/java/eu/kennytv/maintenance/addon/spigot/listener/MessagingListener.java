@@ -4,6 +4,7 @@ import eu.kennytv.maintenance.addon.MaintenanceChannel;
 import eu.kennytv.maintenance.addon.spigot.MaintenanceSpigotAddon;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -17,11 +18,13 @@ public final class MessagingListener implements PluginMessageListener {
     }
 
     @Override
-    public void onPluginMessageReceived(final String s, final Player player, final byte[] bytes) {
+    public void onPluginMessageReceived(final @NotNull String s, final @NotNull Player player, final byte[] bytes) {
         final DataInputStream in = new DataInputStream(new ByteArrayInputStream(bytes));
         try {
             final byte ordinal = in.readByte();
-            if (ordinal < 0 || ordinal >= MaintenanceChannel.getValues().length) return;
+            if (ordinal < 0 || ordinal >= MaintenanceChannel.getValues().length) {
+                return;
+            }
 
             final MaintenanceChannel channel = MaintenanceChannel.getValues()[ordinal];
             switch (channel) {

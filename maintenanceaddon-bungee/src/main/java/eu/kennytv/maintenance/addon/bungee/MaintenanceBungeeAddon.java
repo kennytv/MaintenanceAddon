@@ -6,10 +6,10 @@ import eu.kennytv.maintenance.addon.bungee.listener.MaintenanceChangedListener;
 import eu.kennytv.maintenance.addon.bungee.listener.MaintenanceReloadedListener;
 import eu.kennytv.maintenance.addon.bungee.listener.MessagingListener;
 import eu.kennytv.maintenance.addon.bungee.listener.ServerMaintenanceChangedListener;
-import eu.kennytv.maintenance.api.bungee.MaintenanceBungeeAPI;
+import eu.kennytv.maintenance.api.MaintenanceProvider;
 import eu.kennytv.maintenance.api.event.MaintenanceChangedEvent;
 import eu.kennytv.maintenance.api.event.MaintenanceReloadedEvent;
-import eu.kennytv.maintenance.api.event.manager.IEventManager;
+import eu.kennytv.maintenance.api.event.manager.EventManager;
 import eu.kennytv.maintenance.api.event.proxy.ServerMaintenanceChangedEvent;
 import eu.kennytv.maintenance.core.config.Config;
 import eu.kennytv.maintenance.core.proxy.MaintenanceProxyPlugin;
@@ -32,7 +32,7 @@ public final class MaintenanceBungeeAddon extends Plugin {
 
     @Override
     public void onEnable() {
-        maintenanceApi = (MaintenanceProxyPlugin) MaintenanceBungeeAPI.getAPI();
+        maintenanceApi = (MaintenanceProxyPlugin) MaintenanceProvider.get();
 
         final File file = new File(maintenanceApi.getDataFolder(), "addon.yml");
         if (!file.exists()) {
@@ -51,7 +51,7 @@ public final class MaintenanceBungeeAddon extends Plugin {
         }
 
         getProxy().getPluginManager().registerListener(this, new MessagingListener(this));
-        final IEventManager eventManager = maintenanceApi.getEventManager();
+        final EventManager eventManager = maintenanceApi.getEventManager();
         eventManager.registerListener(new MaintenanceChangedListener(this), MaintenanceChangedEvent.class);
         eventManager.registerListener(new ServerMaintenanceChangedListener(this), ServerMaintenanceChangedEvent.class);
         eventManager.registerListener(new MaintenanceReloadedListener(this), MaintenanceReloadedEvent.class);

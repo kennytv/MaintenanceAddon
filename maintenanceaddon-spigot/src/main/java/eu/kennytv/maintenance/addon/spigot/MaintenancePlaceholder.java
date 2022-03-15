@@ -2,6 +2,7 @@ package eu.kennytv.maintenance.addon.spigot;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
+import org.jetbrains.annotations.NotNull;
 
 public final class MaintenancePlaceholder extends PlaceholderExpansion {
     private final MaintenanceSpigotAddon plugin;
@@ -21,17 +22,17 @@ public final class MaintenancePlaceholder extends PlaceholderExpansion {
     }
 
     @Override
-    public String getIdentifier() {
+    public @NotNull String getIdentifier() {
         return "maintenance";
     }
 
     @Override
-    public String getAuthor() {
-        return "KennyTV";
+    public @NotNull String getAuthor() {
+        return "kennytv";
     }
 
     @Override
-    public String getVersion() {
+    public @NotNull String getVersion() {
         return plugin.getDescription().getVersion();
     }
 }

@@ -6,12 +6,15 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public final class MaintenanceAddonCommand implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String s, final String[] args) {
-        if (!(sender instanceof Player)) return true;
+    public boolean onCommand(final @NotNull CommandSender sender, final @NotNull Command command, final @NotNull String s, final String[] args) {
+        if (!(sender instanceof Player)) {
+            return true;
+        }
 
         final OfflinePlayer player = (OfflinePlayer) sender;
         final String server = args.length != 0 ? args[0] : "server1";
