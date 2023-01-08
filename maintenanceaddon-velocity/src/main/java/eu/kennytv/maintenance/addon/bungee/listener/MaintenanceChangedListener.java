@@ -1,13 +1,13 @@
 package eu.kennytv.maintenance.addon.bungee.listener;
 
-import eu.kennytv.maintenance.addon.bungee.MaintenanceBungeeAddon;
+import eu.kennytv.maintenance.addon.bungee.MaintenanceVelocityAddon;
 import eu.kennytv.maintenance.api.event.MaintenanceChangedEvent;
 import eu.kennytv.maintenance.api.event.manager.EventListener;
 
 public final class MaintenanceChangedListener extends EventListener<MaintenanceChangedEvent> {
-    private final MaintenanceBungeeAddon plugin;
+    private final MaintenanceVelocityAddon plugin;
 
-    public MaintenanceChangedListener(final MaintenanceBungeeAddon plugin) {
+    public MaintenanceChangedListener(final MaintenanceVelocityAddon plugin) {
         this.plugin = plugin;
     }
 

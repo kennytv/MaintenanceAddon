@@ -1,5 +1,6 @@
 package eu.kennytv.maintenance.addon.bungee.listener;
 
+import eu.kennytv.maintenance.addon.MaintenanceChannel;
 import eu.kennytv.maintenance.addon.bungee.MaintenanceBungeeAddon;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -14,9 +15,9 @@ public final class MessagingListener implements Listener {
 
     @EventHandler
     public void pluginMessage(final PluginMessageEvent event) {
-        if (event.getTag().equals("maintenance:request")) {
-            plugin.sendMessages();
-            plugin.sendAllServers();
+        if (event.getTag().equals(MaintenanceChannel.REQUEST_CHANNEL_ID)) {
+            plugin.messageSender().sendMessages();
+            plugin.messageSender().sendAllServers();
         }
     }
 }

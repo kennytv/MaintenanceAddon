@@ -2,6 +2,7 @@ package eu.kennytv.maintenance.addon.spigot;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
+import eu.kennytv.maintenance.addon.MaintenanceChannel;
 import eu.kennytv.maintenance.addon.spigot.command.MaintenanceAddonCommand;
 import eu.kennytv.maintenance.addon.spigot.listener.MessagingListener;
 import eu.kennytv.maintenance.addon.spigot.listener.PlayerJoinListener;
@@ -26,8 +27,8 @@ public final class MaintenanceSpigotAddon extends JavaPlugin {
     public void onEnable() {
         new MaintenancePlaceholder(this).register();
 
-        getServer().getMessenger().registerOutgoingPluginChannel(this, "maintenance:request");
-        getServer().getMessenger().registerIncomingPluginChannel(this, "maintenance:return", new MessagingListener(this));
+        getServer().getMessenger().registerOutgoingPluginChannel(this, MaintenanceChannel.REQUEST_CHANNEL_ID);
+        getServer().getMessenger().registerIncomingPluginChannel(this, MaintenanceChannel.DATA_CHANNEL_ID, new MessagingListener(this));
 
         final Collection<? extends Player> players = getServer().getOnlinePlayers();
         if (players.isEmpty()) {
@@ -49,7 +50,7 @@ public final class MaintenanceSpigotAddon extends JavaPlugin {
             final String packageName = Bukkit.getServer().getClass().getPackage().getName();
             final String version = packageName.substring(packageName.lastIndexOf('.') + 1);
             Class.forName("org.bukkit.craftbukkit." + version + ".entity.CraftPlayer")
-                    .getMethod("addChannel", String.class).invoke(player, "maintenance:request");
+                    .getMethod("addChannel", String.class).invoke(player, MaintenanceChannel.REQUEST_CHANNEL_ID);
         } catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
             e.printStackTrace();
             return;
@@ -58,7 +59,7 @@ public final class MaintenanceSpigotAddon extends JavaPlugin {
         // Request data from Bungee when the first player joins, as the messaging requires players
         final ByteArrayDataOutput dataOutput = ByteStreams.newDataOutput();
         dataOutput.writeBoolean(true);
-        player.sendPluginMessage(this, "maintenance:request", dataOutput.toByteArray());
+        player.sendPluginMessage(this, MaintenanceChannel.REQUEST_CHANNEL_ID, dataOutput.toByteArray());
     }
 
     public boolean isMaintenance() {

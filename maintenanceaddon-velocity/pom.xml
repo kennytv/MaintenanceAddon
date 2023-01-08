@@ -9,7 +9,7 @@
         <version>2.0.0</version>
     </parent>
 
-    <artifactId>maintenanceaddon-spigot</artifactId>
+    <artifactId>maintenanceaddon-velocity</artifactId>
 
     <dependencies>
         <dependency>
@@ -19,21 +19,15 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.19.3-R0.1-SNAPSHOT</version>
+            <groupId>com.velocitypowered</groupId>
+            <artifactId>velocity-api</artifactId>
+            <version>3.1.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>eu.kennytv.maintenance</groupId>
-            <artifactId>maintenance-api</artifactId>
+            <artifactId>maintenance-velocity</artifactId>
             <version>${maintenance.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>me.clip</groupId>
-            <artifactId>placeholderapi</artifactId>
-            <version>2.11.2</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

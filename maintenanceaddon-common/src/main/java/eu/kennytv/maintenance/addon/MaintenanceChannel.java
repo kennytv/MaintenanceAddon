@@ -20,6 +20,8 @@ public enum MaintenanceChannel {
      */
     GLOBAL_STATUS;
 
+    public static final String REQUEST_CHANNEL_ID = "maintenance:addon_data_request";
+    public static final String DATA_CHANNEL_ID = "maintenance:addon_data";
     private static final MaintenanceChannel[] VALUES = values();
 
     /**

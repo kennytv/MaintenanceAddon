@@ -29,9 +29,11 @@ public final class MessagingListener implements PluginMessageListener {
             final MaintenanceChannel channel = MaintenanceChannel.getValues()[ordinal];
             switch (channel) {
                 case MESSAGES: {
-                    final int length = in.readInt();
+                    final int length = in.readByte();
                     for (int i = 0; i < length; i++) {
-                        plugin.getMessages().put(in.readUTF(), in.readUTF());
+                        final String key = in.readUTF();
+                        final String message = in.readUTF();
+                        plugin.getMessages().put(key, message);
                     }
                     break;
                 }
@@ -47,7 +49,7 @@ public final class MessagingListener implements PluginMessageListener {
                 case SERVERS: {
                     plugin.setMaintenance(in.readBoolean());
 
-                    final int length = in.readInt();
+                    final int length = in.readShort();
                     plugin.getMaintenanceServers().clear();
                     for (int i = 0; i < length; i++) {
                         plugin.getMaintenanceServers().add(in.readUTF());
