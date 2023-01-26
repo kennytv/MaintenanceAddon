@@ -1,4 +1,4 @@
-package eu.kennytv.maintenance.addon.bungee;
+package eu.kennytv.maintenance.addon.velocity;
 
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;

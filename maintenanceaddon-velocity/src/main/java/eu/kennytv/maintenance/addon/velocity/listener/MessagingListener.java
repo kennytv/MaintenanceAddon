@@ -1,9 +1,9 @@
-package eu.kennytv.maintenance.addon.bungee.listener;
+package eu.kennytv.maintenance.addon.velocity.listener;
 
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import eu.kennytv.maintenance.addon.MaintenanceChannel;
-import eu.kennytv.maintenance.addon.bungee.MaintenanceVelocityAddon;
+import eu.kennytv.maintenance.addon.velocity.MaintenanceVelocityAddon;
 
 public final class MessagingListener {
     private final MaintenanceVelocityAddon plugin;

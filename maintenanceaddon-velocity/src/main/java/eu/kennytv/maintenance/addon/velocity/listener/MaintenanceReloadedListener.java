@@ -1,6 +1,6 @@
-package eu.kennytv.maintenance.addon.bungee.listener;
+package eu.kennytv.maintenance.addon.velocity.listener;
 
-import eu.kennytv.maintenance.addon.bungee.MaintenanceVelocityAddon;
+import eu.kennytv.maintenance.addon.velocity.MaintenanceVelocityAddon;
 import eu.kennytv.maintenance.api.event.MaintenanceReloadedEvent;
 import eu.kennytv.maintenance.api.event.manager.EventListener;
 

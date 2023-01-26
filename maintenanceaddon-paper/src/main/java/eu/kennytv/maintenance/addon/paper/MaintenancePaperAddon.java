@@ -1,11 +1,11 @@
-package eu.kennytv.maintenance.addon.spigot;
+package eu.kennytv.maintenance.addon.paper;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import eu.kennytv.maintenance.addon.MaintenanceChannel;
-import eu.kennytv.maintenance.addon.spigot.command.MaintenanceAddonCommand;
-import eu.kennytv.maintenance.addon.spigot.listener.MessagingListener;
-import eu.kennytv.maintenance.addon.spigot.listener.PlayerJoinListener;
+import eu.kennytv.maintenance.addon.paper.command.MaintenanceAddonCommand;
+import eu.kennytv.maintenance.addon.paper.listener.MessagingListener;
+import eu.kennytv.maintenance.addon.paper.listener.PlayerJoinListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
@@ -18,7 +18,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public final class MaintenanceSpigotAddon extends JavaPlugin {
+public final class MaintenancePaperAddon extends JavaPlugin {
     private final Set<String> maintenanceServers = new HashSet<>();
     private final Map<String, String> messages = new HashMap<>();
     private boolean maintenance;

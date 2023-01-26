@@ -1,4 +1,4 @@
-package eu.kennytv.maintenance.addon.spigot.command;
+package eu.kennytv.maintenance.addon.paper.command;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.OfflinePlayer;

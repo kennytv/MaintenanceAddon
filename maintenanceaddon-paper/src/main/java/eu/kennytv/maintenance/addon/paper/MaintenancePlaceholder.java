@@ -1,13 +1,13 @@
-package eu.kennytv.maintenance.addon.spigot;
+package eu.kennytv.maintenance.addon.paper;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
 public final class MaintenancePlaceholder extends PlaceholderExpansion {
-    private final MaintenanceSpigotAddon plugin;
+    private final MaintenancePaperAddon plugin;
 
-    public MaintenancePlaceholder(final MaintenanceSpigotAddon plugin) {
+    public MaintenancePlaceholder(final MaintenancePaperAddon plugin) {
         this.plugin = plugin;
     }
 

@@ -1,14 +1,14 @@
-package eu.kennytv.maintenance.addon.spigot.listener;
+package eu.kennytv.maintenance.addon.paper.listener;
 
-import eu.kennytv.maintenance.addon.spigot.MaintenanceSpigotAddon;
+import eu.kennytv.maintenance.addon.paper.MaintenancePaperAddon;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public final class PlayerJoinListener implements Listener {
-    private final MaintenanceSpigotAddon plugin;
+    private final MaintenancePaperAddon plugin;
 
-    public PlayerJoinListener(final MaintenanceSpigotAddon plugin) {
+    public PlayerJoinListener(final MaintenancePaperAddon plugin) {
         this.plugin = plugin;
     }
 

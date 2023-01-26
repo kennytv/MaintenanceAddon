@@ -1,7 +1,7 @@
-package eu.kennytv.maintenance.addon.spigot.listener;
+package eu.kennytv.maintenance.addon.paper.listener;
 
 import eu.kennytv.maintenance.addon.MaintenanceChannel;
-import eu.kennytv.maintenance.addon.spigot.MaintenanceSpigotAddon;
+import eu.kennytv.maintenance.addon.paper.MaintenancePaperAddon;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.jetbrains.annotations.NotNull;
@@ -11,9 +11,9 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 public final class MessagingListener implements PluginMessageListener {
-    private final MaintenanceSpigotAddon plugin;
+    private final MaintenancePaperAddon plugin;
 
-    public MessagingListener(final MaintenanceSpigotAddon plugin) {
+    public MessagingListener(final MaintenancePaperAddon plugin) {
         this.plugin = plugin;
     }
 

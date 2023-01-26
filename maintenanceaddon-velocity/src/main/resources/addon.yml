@@ -5,4 +5,4 @@
 maintenance-on: "<green>enabled"
 maintenance-off: "<red>disabled"
 single-maintenance-on: "<green>enabled"
-single-maintenance-off: "<green>disabled"
+single-maintenance-off: "<red>disabled"

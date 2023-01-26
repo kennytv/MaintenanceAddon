@@ -1,6 +1,6 @@
 name: MaintenanceAddon
 version: ${project.version}
-main: eu.kennytv.maintenance.addon.spigot.MaintenanceSpigotAddon
+main: eu.kennytv.maintenance.addon.paper.MaintenancePaperAddon
 author: kennytv
 website: https://github.com/kennytv/MaintenanceAddon
 api-version: 1.13

@@ -1,4 +1,4 @@
-package eu.kennytv.maintenance.addon.bungee;
+package eu.kennytv.maintenance.addon.velocity;
 
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
@@ -9,10 +9,10 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import eu.kennytv.maintenance.addon.MaintenanceChannel;
 import eu.kennytv.maintenance.addon.MessageSender;
-import eu.kennytv.maintenance.addon.bungee.listener.MaintenanceChangedListener;
-import eu.kennytv.maintenance.addon.bungee.listener.MaintenanceReloadedListener;
-import eu.kennytv.maintenance.addon.bungee.listener.MessagingListener;
-import eu.kennytv.maintenance.addon.bungee.listener.ServerMaintenanceChangedListener;
+import eu.kennytv.maintenance.addon.velocity.listener.MaintenanceChangedListener;
+import eu.kennytv.maintenance.addon.velocity.listener.MaintenanceReloadedListener;
+import eu.kennytv.maintenance.addon.velocity.listener.MessagingListener;
+import eu.kennytv.maintenance.addon.velocity.listener.ServerMaintenanceChangedListener;
 import eu.kennytv.maintenance.api.MaintenanceProvider;
 import eu.kennytv.maintenance.api.event.MaintenanceChangedEvent;
 import eu.kennytv.maintenance.api.event.MaintenanceReloadedEvent;
