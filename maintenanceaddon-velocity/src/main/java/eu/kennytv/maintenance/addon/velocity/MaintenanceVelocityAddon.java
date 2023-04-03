@@ -26,8 +26,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
-@Plugin(id = "maintenanceaddon", name = "MaintenanceAddon", version = "2.0.1", authors = "kennytv",
-        url = "https://github.com/kennytv/MaintenanceAddon",
+@Plugin(id = "maintenanceaddon", name = "MaintenanceAddon", version = "2.0.3", authors = "kennytv",
+        url = "https://hangar.papermc.io/kennytv/MaintenanceAddon",
         dependencies = {@Dependency(id = "maintenance")})
 public final class MaintenanceVelocityAddon {
     private final ProxyServer server;

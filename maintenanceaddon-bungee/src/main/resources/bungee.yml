@@ -2,5 +2,5 @@ name: MaintenanceAddon
 version: ${project.version}
 main: eu.kennytv.maintenance.addon.bungee.MaintenanceBungeeAddon
 author: kennytv
-website: https://github.com/kennytv/MaintenanceAddon
+website: https://hangar.papermc.io/kennytv/MaintenanceAddon
 depends: [Maintenance]
