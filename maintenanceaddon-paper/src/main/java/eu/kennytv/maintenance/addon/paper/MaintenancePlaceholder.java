@@ -35,4 +35,9 @@ public final class MaintenancePlaceholder extends PlaceholderExpansion {
     public @NotNull String getVersion() {
         return plugin.getDescription().getVersion();
     }
+
+    @Override
+    public boolean persist() {
+        return true; // This is required or else PlaceholderAPI will unregister the Expansion on reload
+    }
 }
