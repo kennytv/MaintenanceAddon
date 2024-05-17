@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
-@Plugin(id = "maintenanceaddon", name = "MaintenanceAddon", version = "2.0.5", authors = "kennytv",
+@Plugin(id = "maintenanceaddon", name = "MaintenanceAddon", version = "2.0.6", authors = "kennytv",
         url = "https://hangar.papermc.io/kennytv/MaintenanceAddon",
         dependencies = {@Dependency(id = "maintenance")})
 public final class MaintenanceVelocityAddon {
