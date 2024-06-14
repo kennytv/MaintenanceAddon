@@ -47,9 +47,9 @@ public final class MaintenancePaperAddon extends JavaPlugin {
     public void sendInitialRequest(final Player player) {
         // Because the messaging sucks
         try {
-            final String packageName = Bukkit.getServer().getClass().getPackage().getName();
-            final String version = packageName.substring(packageName.lastIndexOf('.') + 1);
-            Class.forName("org.bukkit.craftbukkit." + version + ".entity.CraftPlayer")
+            final String className = Bukkit.getServer().getClass().getName();
+            final String craftBukkitPackage = className.substring(0, className.lastIndexOf('.'));
+            Class.forName(craftBukkitPackage + ".entity.CraftPlayer")
                     .getMethod("addChannel", String.class).invoke(player, MaintenanceChannel.REQUEST_CHANNEL_ID);
         } catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
             e.printStackTrace();
