@@ -1,0 +1,7 @@
+name: MaintenanceAddon
+version: ${version}
+description: ${description}
+main: eu.kennytv.maintenance.addon.bungee.MaintenanceBungeeAddon
+author: kennytv
+website: https://hangar.papermc.io/kennytv/MaintenanceAddon
+depends: [Maintenance]
