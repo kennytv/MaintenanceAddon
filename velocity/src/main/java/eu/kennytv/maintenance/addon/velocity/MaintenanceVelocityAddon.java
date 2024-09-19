@@ -30,7 +30,7 @@ import java.nio.file.Files;
 
 @Plugin(id = "maintenanceaddon", name = "MaintenanceAddon", version = MaintenanceAddonVersion.VERSION, authors = "kennytv",
         url = "https://hangar.papermc.io/kennytv/MaintenanceAddon",
-        dependencies = {@Dependency(id = "maintenance")})
+        dependencies = {@Dependency(id = "maintenance"), @Dependency(id = "miniplaceholders", optional = true)})
 public final class MaintenanceVelocityAddon {
     private final ProxyServer server;
     private MessageSender messageSender;
