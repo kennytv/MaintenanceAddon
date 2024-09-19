@@ -14,7 +14,7 @@ public abstract class MessageSender {
             out.writeByte(values.size());
             for (final Map.Entry<String, Object> entry : values.entrySet()) {
                 out.writeUTF(entry.getKey());
-                out.writeUTF(yuckifyRichMessage(String.valueOf(entry.getValue())));
+                out.writeUTF(String.valueOf(entry.getValue()));
             }
         });
     }
@@ -66,6 +66,4 @@ public abstract class MessageSender {
     protected abstract boolean isGlobalMaintenance();
 
     protected abstract Collection<String> maintenanceServers();
-
-    protected abstract String yuckifyRichMessage(final String s);
 }

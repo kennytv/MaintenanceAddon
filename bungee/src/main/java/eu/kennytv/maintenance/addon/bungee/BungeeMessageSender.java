@@ -45,10 +45,4 @@ public final class BungeeMessageSender extends MessageSender {
     protected Collection<String> maintenanceServers() {
         return maintenance.getMaintenanceServers();
     }
-
-    @Override
-    protected String yuckifyRichMessage(final String s) {
-        final Component component = MiniMessage.miniMessage().deserialize(s);
-        return LegacyComponentSerializer.legacySection().serialize(component);
-    }
 }

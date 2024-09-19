@@ -22,6 +22,8 @@ pluginManagement {
 
 includeBuild("build-logic")
 
+include("adventure")
+
 listOf(
     "common",
     "bungee",

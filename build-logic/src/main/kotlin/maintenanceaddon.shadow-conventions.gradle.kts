@@ -1,5 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     id("maintenanceaddon.base-conventions")
     id("com.gradleup.shadow")

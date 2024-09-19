@@ -4,11 +4,14 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import eu.kennytv.maintenance.addon.MaintenanceChannel;
 import eu.kennytv.maintenance.addon.paper.command.MaintenanceAddonCommand;
+import eu.kennytv.maintenance.addon.paper.expansion.MaintenanceMiniPlaceholdersExpansion;
+import eu.kennytv.maintenance.addon.paper.expansion.MaintenancePAPIExpansion;
 import eu.kennytv.maintenance.addon.paper.listener.MessagingListener;
 import eu.kennytv.maintenance.addon.paper.listener.PlayerJoinListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.InvocationTargetException;
@@ -25,7 +28,7 @@ public final class MaintenancePaperAddon extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        new MaintenancePlaceholder(this).register();
+        registerExpansions();
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, MaintenanceChannel.REQUEST_CHANNEL_ID);
         getServer().getMessenger().registerIncomingPluginChannel(this, MaintenanceChannel.DATA_CHANNEL_ID, new MessagingListener(this));
@@ -76,5 +79,25 @@ public final class MaintenancePaperAddon extends JavaPlugin {
 
     public Map<String, String> getMessages() {
         return messages;
+    }
+
+    private void registerExpansions() {
+        PluginManager manager = getServer().getPluginManager();
+
+        boolean expansionRegistered = false;
+        if (manager.isPluginEnabled("MiniPlaceholders")) {
+            new MaintenanceMiniPlaceholdersExpansion(this).register();
+            getLogger().info("Registered MiniPlaceholders expansion");
+            expansionRegistered = true;
+        }
+        if (manager.isPluginEnabled("PlaceholderAPI")) {
+            new MaintenancePAPIExpansion(this).register();
+            getLogger().info("Registered PlaceholderAPI expansion");
+            expansionRegistered = true;
+        }
+
+        if (!expansionRegistered) {
+            getLogger().warning("Neither MiniPlaceholders or PlaceholderAPI was found. Placeholders won't be registered.");
+        }
     }
 }
