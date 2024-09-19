@@ -14,7 +14,6 @@ local.properties
 .externalToolBuilders/
 *.launch
 *.pydevproject
-*.jar
 .cproject
 .classpath
 .factorypath
@@ -92,3 +91,5 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.lnk
+*.gradle
+build

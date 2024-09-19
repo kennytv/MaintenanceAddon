@@ -1,0 +1,9 @@
+name: MaintenanceAddon
+version: ${version}
+description: ${description}
+main: eu.kennytv.maintenance.addon.paper.MaintenancePaperAddon
+author: kennytv
+website: https://hangar.papermc.io/kennytv/MaintenanceAddon
+api-version: 1.13
+folia-supported: true
+depend: [PlaceholderAPI]
