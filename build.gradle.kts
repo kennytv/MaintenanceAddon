@@ -1,5 +1,5 @@
 group = "eu.kennytv.maintenanceaddon"
-version = "2.0.7"
+version = "3.0.0-SNAPSHOT"
 description = "Adds placeholders to the Maintenance plugin."
 
 plugins {
