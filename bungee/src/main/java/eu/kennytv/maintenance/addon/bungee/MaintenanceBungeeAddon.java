@@ -12,12 +12,11 @@ import eu.kennytv.maintenance.api.event.manager.EventManager;
 import eu.kennytv.maintenance.api.event.proxy.ServerMaintenanceChangedEvent;
 import eu.kennytv.maintenance.core.config.Config;
 import eu.kennytv.maintenance.core.proxy.MaintenanceProxyPlugin;
-import net.md_5.bungee.api.plugin.Plugin;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import net.md_5.bungee.api.plugin.Plugin;
 
 public final class MaintenanceBungeeAddon extends Plugin {
     private MessageSender messageSender;
@@ -38,7 +37,7 @@ public final class MaintenanceBungeeAddon extends Plugin {
         try {
             config.load();
         } catch (final IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error loading Maintenance addon.yml", e);
         }
 
         messageSender = new BungeeMessageSender(getProxy(), maintenance, config);

@@ -17,7 +17,8 @@ public final class MaintenanceMiniPlaceholdersExpansion {
 						status = plugin.getMessages().get(plugin.isMaintenance() ? "maintenance-on" : "maintenance-off");
 					} else {
 						String serverName = queue.pop().lowerValue();
-						status = plugin.getMessages().get(plugin.getMaintenanceServers().contains(serverName) ? "single-maintenance-on" : "single-maintenance-off");
+						boolean maintenanceEnabled = plugin.getMaintenanceServers().contains(serverName);
+						status = plugin.getMessages().get(maintenanceEnabled ? "single-maintenance-on" : "single-maintenance-off");
 					}
 
 					if (status == null) {

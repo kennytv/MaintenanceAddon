@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Map;
 
 public abstract class MessageSender {
@@ -28,7 +29,7 @@ public abstract class MessageSender {
             final Collection<String> maintenanceServers = maintenanceServers();
             out.writeShort(maintenanceServers.size());
             for (final String server : maintenanceServers) {
-                out.writeUTF(server.toLowerCase());
+                out.writeUTF(server.toLowerCase(Locale.ROOT));
             }
         });
     }
@@ -51,8 +52,7 @@ public abstract class MessageSender {
             out.writeByte(channel.ordinal());
             consumer.accept(out);
         } catch (final IOException e) {
-            e.printStackTrace();
-            return;
+            throw new RuntimeException(e);
         }
 
         final byte[] data = stream.toByteArray();

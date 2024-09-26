@@ -8,18 +8,18 @@ import eu.kennytv.maintenance.addon.paper.expansion.MaintenanceMiniPlaceholdersE
 import eu.kennytv.maintenance.addon.paper.expansion.MaintenancePAPIExpansion;
 import eu.kennytv.maintenance.addon.paper.listener.MessagingListener;
 import eu.kennytv.maintenance.addon.paper.listener.PlayerJoinListener;
-import org.bukkit.Bukkit;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import org.bukkit.Bukkit;
+import org.bukkit.command.PluginCommand;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.Messenger;
 
 public final class MaintenancePaperAddon extends JavaPlugin {
     private final Set<String> maintenanceServers = new HashSet<>();
@@ -30,14 +30,15 @@ public final class MaintenancePaperAddon extends JavaPlugin {
     public void onEnable() {
         registerExpansions();
 
-        getServer().getMessenger().registerOutgoingPluginChannel(this, MaintenanceChannel.REQUEST_CHANNEL_ID);
-        getServer().getMessenger().registerIncomingPluginChannel(this, MaintenanceChannel.DATA_CHANNEL_ID, new MessagingListener(this));
+        final Messenger messenger = getServer().getMessenger();
+        messenger.registerOutgoingPluginChannel(this, MaintenanceChannel.REQUEST_CHANNEL_ID);
+        messenger.registerIncomingPluginChannel(this, MaintenanceChannel.DATA_CHANNEL_ID, new MessagingListener(this));
 
         final Collection<? extends Player> players = getServer().getOnlinePlayers();
         if (players.isEmpty()) {
             getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         } else {
-            sendInitialRequest(players.stream().findAny().orElse(null));
+            sendInitialRequest(players.iterator().next());
         }
 
         // Debug command

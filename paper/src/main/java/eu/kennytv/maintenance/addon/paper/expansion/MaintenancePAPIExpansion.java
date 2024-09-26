@@ -4,11 +4,14 @@ import eu.kennytv.maintenance.addon.lib.kyori.adventure.text.Component;
 import eu.kennytv.maintenance.addon.lib.kyori.adventure.text.minimessage.MiniMessage;
 import eu.kennytv.maintenance.addon.lib.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import eu.kennytv.maintenance.addon.paper.MaintenancePaperAddon;
+import java.util.Locale;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
 public final class MaintenancePAPIExpansion extends PlaceholderExpansion {
+	private static final String SERVER_PREFIX = "server_";
+	private static final int SERVER_PREFIX_LENGTH = SERVER_PREFIX.length();
 	private final MaintenancePaperAddon plugin;
 
 	public MaintenancePAPIExpansion(final MaintenancePaperAddon plugin) {
@@ -20,9 +23,10 @@ public final class MaintenancePAPIExpansion extends PlaceholderExpansion {
 		if (identifier.equals("status")) {
 			String message = plugin.getMessages().get(plugin.isMaintenance() ? "maintenance-on" : "maintenance-off");
 			return yuckifyRichMessage(message);
-		} else if (identifier.startsWith("server_")) {
-			String serverName = identifier.substring(7).toLowerCase();
-			String message = plugin.getMessages().get(plugin.getMaintenanceServers().contains(serverName) ? "single-maintenance-on" : "single-maintenance-off");
+		} else if (identifier.startsWith(SERVER_PREFIX)) {
+			String serverName = identifier.substring(SERVER_PREFIX_LENGTH).toLowerCase(Locale.ROOT);
+			boolean maintenanceEnabled = plugin.getMaintenanceServers().contains(serverName);
+			String message = plugin.getMessages().get(maintenanceEnabled ? "single-maintenance-on" : "single-maintenance-off");
 			return yuckifyRichMessage(message);
 		}
 		return null;
