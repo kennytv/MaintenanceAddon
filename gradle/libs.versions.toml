@@ -1,20 +1,32 @@
 [versions]
-maintenance = "4.2.1"
+# Shaded
+adventure = "4.17.0"
 
 # Provided
+maintenance = "4.2.1"
+
+miniplaceholders = "2.2.3"
 placeholderapi = "2.11.6"
 
 bungee = "1.20-R0.1-SNAPSHOT"
-paper = "1.19.3-R0.1-SNAPSHOT"
-velocity = "3.1.0"
+paper = "1.20.4-R0.1-SNAPSHOT"
+velocity = "3.3.0-SNAPSHOT"
 
 [libraries]
+adventureApi = { group = "net.kyori", name = "adventure-api", version.ref = "adventure" }
+adventureTextMinimessage = { group = "net.kyori", name = "adventure-text-minimessage", version.ref = "adventure" }
+adventureTextSerializerLegacy = { group = "net.kyori", name = "adventure-text-serializer-legacy", version.ref = "adventure" }
+
 maintenance-api = { group = "eu.kennytv.maintenance", name = "maintenance-api", version.ref = "maintenance" }
 maintenance-bungee = { group = "eu.kennytv.maintenance", name = "maintenance-bungee", version.ref = "maintenance" }
 maintenance-velocity = { group = "eu.kennytv.maintenance", name = "maintenance-velocity", version.ref = "maintenance" }
 
+miniplaceholders = { group = "io.github.miniplaceholders", name = "miniplaceholders-api", version.ref="miniplaceholders" }
 placeholderapi = { group = "me.clip", name = "placeholderapi", version.ref = "placeholderapi" }
 
 bungee = { group = "net.md-5", name = "bungeecord-api", version.ref = "bungee" }
-paper = { group = "org.spigotmc", name = "spigot-api", version.ref = "paper" }
+paper = { group = "io.papermc.paper", name = "paper-api", version.ref = "paper" }
 velocity = { group = "com.velocitypowered", name = "velocity-api", version.ref = "velocity" }
+
+[bundles]
+adventure = ["adventureApi", "adventureTextMinimessage", "adventureTextSerializerLegacy"]

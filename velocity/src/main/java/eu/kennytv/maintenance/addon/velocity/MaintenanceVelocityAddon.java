@@ -9,6 +9,8 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import eu.kennytv.maintenance.addon.MaintenanceChannel;
 import eu.kennytv.maintenance.addon.MessageSender;
+import eu.kennytv.maintenance.addon.velocity.MaintenanceAddonVersion;
+import eu.kennytv.maintenance.addon.velocity.expansion.MaintenanceMiniPlaceholdersExpansion;
 import eu.kennytv.maintenance.addon.velocity.listener.MaintenanceChangedListener;
 import eu.kennytv.maintenance.addon.velocity.listener.MaintenanceReloadedListener;
 import eu.kennytv.maintenance.addon.velocity.listener.MessagingListener;
@@ -28,7 +30,7 @@ import java.nio.file.Files;
 
 @Plugin(id = "maintenanceaddon", name = "MaintenanceAddon", version = MaintenanceAddonVersion.VERSION, authors = "kennytv",
         url = "https://hangar.papermc.io/kennytv/MaintenanceAddon",
-        dependencies = {@Dependency(id = "maintenance")})
+        dependencies = {@Dependency(id = "maintenance"), @Dependency(id = "miniplaceholders", optional = true)})
 public final class MaintenanceVelocityAddon {
     private final ProxyServer server;
     private MessageSender messageSender;
@@ -55,6 +57,10 @@ public final class MaintenanceVelocityAddon {
             config.load();
         } catch (final IOException e) {
             throw new RuntimeException("Error loading Maintenance addon.yml", e);
+        }
+
+        if (server.getPluginManager().isLoaded("miniplaceholders")) {
+            new MaintenanceMiniPlaceholdersExpansion(maintenance, config).register();
         }
 
         messageSender = new VelocityMessageSender(server, maintenance, config);
