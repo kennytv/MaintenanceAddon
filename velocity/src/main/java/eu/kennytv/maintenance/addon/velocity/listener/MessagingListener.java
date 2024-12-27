@@ -1,5 +1,6 @@
 package eu.kennytv.maintenance.addon.velocity.listener;
 
+import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import eu.kennytv.maintenance.addon.MaintenanceChannel;
@@ -14,6 +15,9 @@ public final class MessagingListener {
 
     @Subscribe
     public void execute(final PluginMessageEvent event) {
+        if (!event.getIdentifier().getId().equals(MaintenanceChannel.REQUEST_CHANNEL_ID)) return;
+        event.setResult(PluginMessageEvent.ForwardResult.handled());
+        if (event.getSourcce() instanceof Player) return;
         if (event.getIdentifier().getId().equals(MaintenanceChannel.REQUEST_CHANNEL_ID)) {
             plugin.messageSender().sendMessages();
             plugin.messageSender().sendAllServers();
