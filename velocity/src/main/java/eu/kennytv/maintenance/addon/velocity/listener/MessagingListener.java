@@ -17,7 +17,7 @@ public final class MessagingListener {
     public void execute(final PluginMessageEvent event) {
         if (!event.getIdentifier().getId().equals(MaintenanceChannel.REQUEST_CHANNEL_ID)) return;
         event.setResult(PluginMessageEvent.ForwardResult.handled());
-        if (event.getSourcce() instanceof Player) return;
+        if (event.getSource() instanceof Player) return;
         plugin.messageSender().sendMessages();
         plugin.messageSender().sendAllServers();
     }
