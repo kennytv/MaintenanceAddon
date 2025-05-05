@@ -16,7 +16,7 @@ dependencyResolutionManagement {
 pluginManagement {
     plugins {
         id("net.kyori.blossom") version "2.1.0"
-        id("com.gradleup.shadow") version "8.3.0"
+        id("com.gradleup.shadow") version "8.3.5"
     }
 }
 
