@@ -6,7 +6,7 @@ val platforms = setOf(
     rootProject.projects.maintenanceaddonPaper,
     rootProject.projects.maintenanceaddonBungee,
     rootProject.projects.maintenanceaddonVelocity
-).map { it.dependencyProject }
+).map { it.path }
 
 tasks {
     shadowJar {
@@ -15,10 +15,11 @@ tasks {
         }
         archiveFileName.set("MaintenanceAddon-${project.version}.jar")
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-        platforms.forEach { platform ->
-            val shadowJarTask = platform.tasks.shadowJar.get()
+        platforms.forEach { platformPath ->
+            val platformProject = project(platformPath)
+            val shadowJarTask = platformProject.tasks.shadowJar.get()
             dependsOn(shadowJarTask)
-            dependsOn(platform.tasks.jar)
+            dependsOn(platformProject.tasks.jar)
             from(zipTree(shadowJarTask.archiveFile))
         }
     }
