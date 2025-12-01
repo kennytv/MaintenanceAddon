@@ -2,8 +2,9 @@ package eu.kennytv.maintenance.addon.paper.expansion;
 
 import eu.kennytv.maintenance.addon.paper.MaintenancePaperAddon;
 import io.github.miniplaceholders.api.Expansion;
-import io.github.miniplaceholders.api.utils.TagsUtils;
+import io.github.miniplaceholders.api.utils.Tags;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.Tag;
 
 public final class MaintenanceMiniPlaceholdersExpansion {
 	private final MiniMessage miniMessage = MiniMessage.miniMessage();
@@ -11,6 +12,8 @@ public final class MaintenanceMiniPlaceholdersExpansion {
 
 	public MaintenanceMiniPlaceholdersExpansion(MaintenancePaperAddon plugin) {
 		expansion = Expansion.builder("maintenance")
+				.author("kennytv")
+				.version("3.0.0-SNAPSHOT")
 				.globalPlaceholder("status", (queue, ctx) -> {
 					String status;
 					if (!queue.hasNext()) {
@@ -22,10 +25,10 @@ public final class MaintenanceMiniPlaceholdersExpansion {
 					}
 
 					if (status == null) {
-						return TagsUtils.EMPTY_TAG;
+						return Tags.EMPTY_TAG;
 					}
 
-					return TagsUtils.staticTag(miniMessage.deserialize(status));
+					return Tag.selfClosingInserting(miniMessage.deserialize(status));
 				}).build();
 	}
 
