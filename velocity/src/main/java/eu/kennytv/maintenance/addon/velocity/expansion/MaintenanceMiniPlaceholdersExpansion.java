@@ -3,8 +3,9 @@ package eu.kennytv.maintenance.addon.velocity.expansion;
 import eu.kennytv.maintenance.api.proxy.MaintenanceProxy;
 import eu.kennytv.maintenance.core.config.Config;
 import io.github.miniplaceholders.api.Expansion;
-import io.github.miniplaceholders.api.utils.TagsUtils;
+import io.github.miniplaceholders.api.utils.Tags;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.Tag;
 
 public final class MaintenanceMiniPlaceholdersExpansion {
 	private final MiniMessage miniMessage = MiniMessage.miniMessage();
@@ -22,10 +23,10 @@ public final class MaintenanceMiniPlaceholdersExpansion {
 					}
 
 					if (status == null) {
-						return TagsUtils.EMPTY_TAG;
+						return Tags.EMPTY_TAG;
 					}
 
-					return TagsUtils.staticTag(miniMessage.deserialize(status));
+					return Tag.selfClosingInserting(miniMessage.deserialize(status));
 				}).build();
 	}
 
