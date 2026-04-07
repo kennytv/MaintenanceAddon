@@ -15,14 +15,12 @@ dependencyResolutionManagement {
 
 pluginManagement {
     plugins {
-        id("net.kyori.blossom") version "2.1.0"
-        id("com.gradleup.shadow") version "8.3.5"
+        id("net.kyori.blossom") version "2.2.0"
+        id("com.gradleup.shadow") version "9.4.1"
     }
 }
 
 includeBuild("build-logic")
-
-include("adventure")
 
 listOf(
     "common",

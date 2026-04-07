@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation(projects.maintenanceaddonCommon)
-    compileOnly(libs.maintenance.velocity)
+    compileOnly(libs.maintenance.core.proxy)
 
     compileOnly(libs.velocity)
     annotationProcessor(libs.velocity)

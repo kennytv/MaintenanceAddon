@@ -1,11 +1,11 @@
 package eu.kennytv.maintenance.addon.paper.expansion;
 
-import eu.kennytv.maintenance.addon.lib.kyori.adventure.text.Component;
-import eu.kennytv.maintenance.addon.lib.kyori.adventure.text.minimessage.MiniMessage;
-import eu.kennytv.maintenance.addon.lib.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import eu.kennytv.maintenance.addon.paper.MaintenancePaperAddon;
 import java.util.Locale;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 

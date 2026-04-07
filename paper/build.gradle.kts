@@ -4,9 +4,6 @@ plugins {
 
 dependencies {
     implementation(projects.maintenanceaddonCommon)
-    implementation(projects.adventure) {
-        targetConfiguration = "shadow"
-    }
     compileOnly(libs.maintenance.api)
 
     compileOnly(libs.paper)
