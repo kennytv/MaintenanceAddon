@@ -8,29 +8,29 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.Tag;
 
 public final class MaintenanceMiniPlaceholdersExpansion {
-	private final MiniMessage miniMessage = MiniMessage.miniMessage();
-	private final Expansion expansion;
+    private final MiniMessage miniMessage = MiniMessage.miniMessage();
+    private final Expansion expansion;
 
-	public MaintenanceMiniPlaceholdersExpansion(MaintenanceProxy maintenance, Config config) {
-		expansion = Expansion.builder("maintenance")
-				.globalPlaceholder("status", (queue, ctx) -> {
-					String status;
-					if (!queue.hasNext()) {
-						status = config.getString(maintenance.isMaintenance() ? "maintenance-on" : "maintenance-off");
-					} else {
-						String serverName = queue.pop().lowerValue();
-						status = config.getString(maintenance.getMaintenanceServers().contains(serverName) ? "single-maintenance-on" : "single-maintenance-off");
-					}
+    public MaintenanceMiniPlaceholdersExpansion(MaintenanceProxy maintenance, Config config) {
+        expansion = Expansion.builder("maintenance")
+                .globalPlaceholder("status", (queue, ctx) -> {
+                    String status;
+                    if (!queue.hasNext()) {
+                        status = config.getString(maintenance.isMaintenance() ? "maintenance-on" : "maintenance-off");
+                    } else {
+                        String serverName = queue.pop().lowerValue();
+                        status = config.getString(maintenance.getMaintenanceServers().contains(serverName) ? "single-maintenance-on" : "single-maintenance-off");
+                    }
 
-					if (status == null) {
-						return Tags.EMPTY_TAG;
-					}
+                    if (status == null) {
+                        return Tags.EMPTY_TAG;
+                    }
 
-					return Tag.selfClosingInserting(miniMessage.deserialize(status));
-				}).build();
-	}
+                    return Tag.selfClosingInserting(miniMessage.deserialize(status));
+                }).build();
+    }
 
-	public void register() {
-		expansion.register();
-	}
+    public void register() {
+        expansion.register();
+    }
 }

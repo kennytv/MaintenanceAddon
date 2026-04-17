@@ -1,31 +1,22 @@
 [versions]
-# Shaded
-adventure = "4.26.1"
 
 # Provided
 maintenance = "5.0.0-beta.2"
 
 miniplaceholders = "3.1.0"
-placeholderapi = "2.11.6"
+placeholderapi = "2.12.2"
 
 bungee = "1.21-R0.4-SNAPSHOT"
 paper = "1.20.4-R0.1-SNAPSHOT"
 velocity = "3.4.0"
 
 [libraries]
-adventureApi = { group = "net.kyori", name = "adventure-api", version.ref = "adventure" }
-adventureTextMinimessage = { group = "net.kyori", name = "adventure-text-minimessage", version.ref = "adventure" }
-adventureTextSerializerLegacy = { group = "net.kyori", name = "adventure-text-serializer-legacy", version.ref = "adventure" }
-
 maintenance-api = { group = "eu.kennytv.maintenance", name = "maintenance-api", version.ref = "maintenance" }
 maintenance-core-proxy = { group = "eu.kennytv.maintenance", name = "maintenance-core-proxy", version.ref = "maintenance" }
 
-miniplaceholders = { group = "io.github.miniplaceholders", name = "miniplaceholders-api", version.ref="miniplaceholders" }
+miniplaceholders = { group = "io.github.miniplaceholders", name = "miniplaceholders-api", version.ref = "miniplaceholders" }
 placeholderapi = { group = "me.clip", name = "placeholderapi", version.ref = "placeholderapi" }
 
 bungee = { group = "net.md-5", name = "bungeecord-api", version.ref = "bungee" }
 paper = { group = "io.papermc.paper", name = "paper-api", version.ref = "paper" }
 velocity = { group = "com.velocitypowered", name = "velocity-api", version.ref = "velocity" }
-
-[bundles]
-adventureBungee = ["adventureApi", "adventureTextMinimessage", "adventureTextSerializerLegacy"]
